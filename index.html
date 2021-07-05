@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Weather Dashboard</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- BOOTSTRAP -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+        <!-- CSS STYLING -->
+        
+        <link rel="stylesheet" href="./assets/styles.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-dark bg-dark " style="margin-bottom:40px">
+            <div class="container-fluid row text-center ">
+              <span class="navbar-brand mb-0 h1 align-items-center">Weather Dashboard</span>
+            </div>
+        </nav>
+        
+        <div class="container-fluid row h-auto ">
+            <div class="col-la-3 col-md-4 col-sm-6 bg-dark text-center rounded-3"> 
+                <form >
+                    <div class="form-group" style="margin: 2% 0;">
+                      <label for="City "><h1 class="" style="color:whitesmoke;">Search for a City:</h1></label>
+                      <input type="text" class="form-control" id="city"  placeholder="City" style="margin: 2% 0;">
+                    </div>
+                    <button id= "search" type="submit" class="btn-lg btn-primary w-100" style="margin: 2% 0;">Submit</button>
+                  </form>
+                  <hr style="color: whitesmoke;">
+<!--                    
+                      <button type="button" style="margin: 2% 0;" class="btn btn-secondary btn-lg w-100">Large button</button>
+                      <button type="button"  style="margin: 2% 0;" class="btn btn-secondary btn-lg w-100">Large button</button>
+                      <button type="button" style="margin: 2% 0;" class="btn btn-secondary btn-lg w-100">Large button</button> -->
+                 
+            </div>
+            <div class="col-la-9 col-md-8 col-sm-6  " id="weatherInfo">
+                
+            </div>
+        </div>
+
+
+        <!-- BOOTSTRAP JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+        <!-- My JS File -->
+        <script src="./assets/script.js" async defer></script>
+    </body>
+</html>
