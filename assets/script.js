@@ -2,6 +2,7 @@ var apiKey = "76e901fb42a8adbcaf016cba79136568";
 
 var submitBtn = document.querySelector("#search");
 
+var prevSearch = document.querySelector("ul");
 //Gets today and the next 5 days
 let days = [];
 let daysRequired = 6
@@ -92,7 +93,13 @@ function getWeather(city){
                         }
                     }
                     console.log(climate);
+                    cities.push(climate);
+                    localStorage.setItem("City", JSON.stringify(cities));
+                    var weatherBlock = document.querySelector("#weatherInfo");
                     
+                    var h1 = document.createElement("h1");
+                    h1.textContent = climate.day.name+" "+climate.day.day+" "+climate.day.icon;
+                    weatherBlock.appendChild(h1);
                 })
             });
     
@@ -101,5 +108,36 @@ function getWeather(city){
 
     
 }
+var mySearch = document.querySelector("#searches");
+var renderSearch = function(){
+    
+}
 
+var displayDasboard = function(){
+    var searchedCity = JSON.parse(window.localStorage.getItem("City") || []);
+    searchedCity.forEach(function(climate){
+        var btn = document.createElement("button");
+        btn.classList.add("btn-secondary");
+        btn.classList.add("btn-lg");
+        btn.classList.add("w-100");
+        btn.id = climate.day.name;
+        btn.style.margin = "2% 0 2% 0";
+        btn.textContent = climate.day.name;
+        mySearch.appendChild(btn);
+    });
+}
+
+$(document).ready(function(){
+ 
+    displayDasboard();
+    
+    
+});
 submitBtn.addEventListener("click", lookForCity);
+prevSearch.addEventListener("click",function(){
+    //How to get id of child button from ul
+    //var myId = this.children[].id;
+    //console.log(myId);
+
+});
+
