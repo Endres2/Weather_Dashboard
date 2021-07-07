@@ -7,7 +7,7 @@ var prevSearch = document.querySelector("ul");
 let days = [];
 let daysRequired = 6
 
-for (let i = 1; i <= daysRequired; i++) {
+for (let i = 0; i <= daysRequired; i++) {
   days.push( moment().add(i, 'days').format('L') );
 }
 //Empty array for cities
@@ -45,7 +45,7 @@ function getWeather(city){
                         day: {
                             name: name,
                             day: days[0],
-                            icon: data.current.weather.icon,
+                            icon: data.current.weather[0].icon,
                             temp: temp,
                             wind: windSpeed,
                             uv: data.current.uvi,
@@ -91,28 +91,153 @@ function getWeather(city){
                             }
                             
                         }
-                    }
-                    console.log(climate);
-                    cities.push(climate);
-                    localStorage.setItem("City", JSON.stringify(cities));
-                    var weatherBlock = document.querySelector("#weatherInfo");
-                    
-                    var h1 = document.createElement("h1");
-                    h1.textContent = climate.day.name+" "+climate.day.day+" "+climate.day.icon;
-                    weatherBlock.appendChild(h1);
+                        
+                    };
+                    renderSearch(climate);
                 })
+               
             });
-    
+            
 
 
 
     
 }
+//Displays each data information from the fetch request using the API
 var mySearch = document.querySelector("#searches");
-var renderSearch = function(){
+var renderSearch = function(climate){
+    var days = ["first","second","third","fourth", "fifth"];
+    console.log(climate);
+    cities.push(climate);
+    localStorage.setItem("City", JSON.stringify(cities));
+    //Hardcoded display of climates
+    var weatherBlock = document.querySelector("#weatherInfo");
+    var weatherBlockWeek = document.querySelector("#weatherInfoWeek");
+    var h1 = document.createElement("h1");
+    var img = document.createElement("img");
+    var temp = document.createElement("h2");
+    var wind = document.createElement("h2");
+    var humidity = document.createElement("h2");
+    var uv = document.createElement("h2");
+    h1.textContent = climate.day.name+" "+climate.day.day;
+    img.setAttribute("src", "http://openweathermap.org/img/wn/"+climate.day.icon+"@2x.png" );
+    temp.textContent = "Temperature: "+climate.day.temp+"℉";
+    wind.textContent = "Wind: "+climate.day.wind;
+    humidity.textContent = "Humidity: "+climate.day.humidity;
+    uv.textContent = "UVI: "+climate.day.uv;
+    console.log(climate[1]);
+   
+    if(climate.day.uv <= 3){
+        uv.style.backgroundColor = ("green");
+    }else if(climate.day.uv>=4 && climate.day.uv<6){
+        uv.style.backgroundColor = ("yellow");
+    }else{
+        uv.style.backgroundColor = ("red");
+    }
+    //Hardcoded display of climates
+    weatherBlock.appendChild(h1);
+    weatherBlock.appendChild(img);
+    weatherBlock.appendChild(temp);
+    weatherBlock.appendChild(wind);
+    weatherBlock.appendChild(humidity);
+    weatherBlock.appendChild(uv);
+    var h3Week = document.createElement("h3");
+    var imgWeek = document.createElement("img");
+    var tempWeek = document.createElement("h3");
+    var windWeek = document.createElement("h3");
+    var humidityWeek = document.createElement("h3");
+    h3Week.textContent = climate.weekTime.first.day;
+    imgWeek.setAttribute("src","http://openweathermap.org/img/wn/"+climate.weekTime.first.icon+"@2x.png");
+    tempWeek.textContent = climate.weekTime.first.temp;
+    windWeek.textContent = climate.weekTime.first.wind;
+    humidityWeek.textContent = climate.weekTime.first.humidity;
+    weatherBlockWeek.appendChild(h3Week);
+    weatherBlockWeek.appendChild(imgWeek);
+    weatherBlockWeek.appendChild(tempWeek);
+    weatherBlockWeek.appendChild(windWeek);
+    weatherBlockWeek.appendChild(humidityWeek);
+    //Hardcoded display of climates
+    var h3Week = document.createElement("h3");
+    var imgWeek = document.createElement("img");
+    var tempWeek = document.createElement("h3");
+    var windWeek = document.createElement("h3");
+    var humidityWeek = document.createElement("h3");
+    h3Week.textContent = climate.weekTime.second.day;
+    imgWeek.setAttribute("src","http://openweathermap.org/img/wn/"+climate.weekTime.second.icon+"@2x.png");
+    tempWeek.textContent = climate.weekTime.second.temp;
+    windWeek.textContent = climate.weekTime.second.wind;
+    humidityWeek.textContent = climate.weekTime.second.humidity;
+    weatherBlockWeek.appendChild(h3Week);
+    weatherBlockWeek.appendChild(imgWeek);
+    weatherBlockWeek.appendChild(tempWeek);
+    weatherBlockWeek.appendChild(windWeek);
+    weatherBlockWeek.appendChild(humidityWeek);
+    //Hardcoded display of climates
+    var h3Week = document.createElement("h3");
+    var imgWeek = document.createElement("img");
+    var tempWeek = document.createElement("h3");
+    var windWeek = document.createElement("h3");
+    var humidityWeek = document.createElement("h3");
+    h3Week.textContent = climate.weekTime.thrid.day;
+    imgWeek.setAttribute("src","http://openweathermap.org/img/wn/"+climate.weekTime.thrid.icon+"@2x.png");
+    tempWeek.textContent = climate.weekTime.thrid.temp;
+    windWeek.textContent = climate.weekTime.thrid.wind;
+    humidityWeek.textContent = climate.weekTime.thrid.humidity;
+    weatherBlockWeek.appendChild(h3Week);
+    weatherBlockWeek.appendChild(imgWeek);
+    weatherBlockWeek.appendChild(tempWeek);
+    weatherBlockWeek.appendChild(windWeek);
+    weatherBlockWeek.appendChild(humidityWeek);
+    //Hardcoded display of climates
+    var h3Week = document.createElement("h3");
+    var imgWeek = document.createElement("img");
+    var tempWeek = document.createElement("h3");
+    var windWeek = document.createElement("h3");
+    var humidityWeek = document.createElement("h3");
+    h3Week.textContent = climate.weekTime.fourth.day;
+    imgWeek.setAttribute("src","http://openweathermap.org/img/wn/"+climate.weekTime.fourth.icon+"@2x.png");
+    tempWeek.textContent = climate.weekTime.fourth.temp;
+    windWeek.textContent = climate.weekTime.fourth.wind;
+    humidityWeek.textContent = climate.weekTime.fourth.humidity;
+    weatherBlockWeek.appendChild(h3Week);
+    weatherBlockWeek.appendChild(imgWeek);
+    weatherBlockWeek.appendChild(tempWeek);
+    weatherBlockWeek.appendChild(windWeek);
+    weatherBlockWeek.appendChild(humidityWeek);
+    //Hardcoded display of climates
+    var h3Week = document.createElement("h3");
+    var imgWeek = document.createElement("img");
+    var tempWeek = document.createElement("h3");
+    var windWeek = document.createElement("h3");
+    var humidityWeek = document.createElement("h3");
+    h3Week.textContent = climate.weekTime.fifth.day;
+    imgWeek.setAttribute("src","http://openweathermap.org/img/wn/"+climate.weekTime.fifth.icon+"@2x.png");
+    tempWeek.textContent = climate.weekTime.fifth.temp;
+    windWeek.textContent = climate.weekTime.fifth.wind;
+    humidityWeek.textContent = climate.weekTime.fifth.humidity;
+    weatherBlockWeek.appendChild(h3Week);
+    weatherBlockWeek.appendChild(imgWeek);
+    weatherBlockWeek.appendChild(tempWeek);
+    weatherBlockWeek.appendChild(windWeek);
+    weatherBlockWeek.appendChild(humidityWeek);
+    
+    displayDasboard();
+}
+function deleteChild() {
+    var e = document.querySelector("#weatherInfo" || "#weatherInfoWeek");
+    
+    //e.firstElementChild can be used.
+    var child = e.lastElementChild; 
+    while (child) {
+        e.removeChild(child);
+        child = e.lastElementChild;
+    }
+}
+var btn = document.getElementById("search").onclick = function() {
+    deleteChild();
     
 }
-
+//Creates a new button from every search term 
 var displayDasboard = function(){
     var searchedCity = JSON.parse(window.localStorage.getItem("City") || []);
     searchedCity.forEach(function(climate){
